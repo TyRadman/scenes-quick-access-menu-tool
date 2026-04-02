@@ -1,6 +1,6 @@
 {
     "name": "com.tyradman.scenes-quick-access-tool",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "displayName": "Scenes Quick Access Tool",
     "description": "A tool that allows quick access to all the scenes in the project by pressing Shift + S.",
     "unity": "2021.3",

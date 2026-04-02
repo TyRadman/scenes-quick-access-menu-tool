@@ -35,7 +35,13 @@ public class ScenesQuickMenuEditorWindow : EditorWindow
             return;
         }
 
-        GetWindow<ScenesQuickMenuEditorWindow>("Scene Loader");
+        var window = GetWindow<ScenesQuickMenuEditorWindow>("Scene Loader");
+        window.minSize = new Vector2(500, 400);
+
+        if (window.position.width < 700 || window.position.height < 500)
+        {
+            window.position = new Rect(window.position.x, window.position.y, 700, 500);
+        }
     }
 
     private void OnEnable()
@@ -73,6 +79,7 @@ public class ScenesQuickMenuEditorWindow : EditorWindow
             _favoriteSceneToRemove = string.Empty;
         }
 
+        GUILayout.Space(10);
         EditorGUILayout.EndScrollView();
         EditorGUILayout.EndVertical();
 
@@ -87,6 +94,7 @@ public class ScenesQuickMenuEditorWindow : EditorWindow
             DrawSceneRow(scenePath, false);
         }
 
+        GUILayout.Space(10);
         EditorGUILayout.EndScrollView();
         EditorGUILayout.EndVertical();
         EditorGUILayout.EndHorizontal();
@@ -94,7 +102,9 @@ public class ScenesQuickMenuEditorWindow : EditorWindow
 
     private void DrawSearchBar()
     {
+        GUILayout.Space(4);
         EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
+        GUILayout.Space(4);
         _searchFilter = GUILayout.TextField(_searchFilter, GUI.skin.FindStyle("ToolbarSearchTextField"));
 
         if (GUILayout.Button(GUIContent.none, GUI.skin.FindStyle("ToolbarSearchCancelButton")))
@@ -103,7 +113,9 @@ public class ScenesQuickMenuEditorWindow : EditorWindow
             GUI.FocusControl(null);
         }
 
+        GUILayout.Space(4);
         EditorGUILayout.EndHorizontal();
+        GUILayout.Space(4);
     }
 
     private IEnumerable<string> FilteredFavorites()
