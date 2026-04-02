@@ -134,6 +134,9 @@ public class ScenesQuickMenuEditorWindow : EditorWindow
     {
         EditorGUILayout.BeginHorizontal("box");
 
+        GUIContent sceneIcon = EditorGUIUtility.IconContent("SceneAsset Icon");
+        GUILayout.Label(sceneIcon, GUILayout.Width(20), GUILayout.Height(25));
+
         if (GUILayout.Button(Path.GetFileNameWithoutExtension(scenePath), GUILayout.Height(25)))
         {
             if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
