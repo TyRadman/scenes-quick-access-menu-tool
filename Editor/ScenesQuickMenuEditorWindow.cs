@@ -27,7 +27,7 @@ public class ScenesQuickMenuEditorWindow : EditorWindow
         return _editorPrefKey;
     }
 
-    [MenuItem("Tools/GRFT+/Scene Loader #s")]
+    [MenuItem("Tools/Scene Loader #s")]
     public static void ShowWindow()
     {
         if(Application.isPlaying)
