@@ -16,6 +16,9 @@ public class ScenesQuickMenuEditorWindow : EditorWindow
 
     private string _favoriteSceneToRemove = string.Empty;
 
+    private const string SearchFieldControlName = "SceneLoaderSearchField";
+    private bool _focusSearchField;
+
     private static string GetEditorPrefKey()
     {
         if(!string.IsNullOrEmpty(_editorPrefKey))
@@ -42,6 +45,10 @@ public class ScenesQuickMenuEditorWindow : EditorWindow
         {
             window.position = new Rect(window.position.x, window.position.y, 700, 500);
         }
+
+        window._focusSearchField = true;
+        window.Focus();
+        window.Repaint();
     }
 
     private void OnEnable()
@@ -105,7 +112,14 @@ public class ScenesQuickMenuEditorWindow : EditorWindow
         GUILayout.Space(4);
         EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
         GUILayout.Space(4);
+        GUI.SetNextControlName(SearchFieldControlName);
         _searchFilter = GUILayout.TextField(_searchFilter, GUI.skin.FindStyle("ToolbarSearchTextField"));
+
+        if (_focusSearchField)
+        {
+            EditorGUI.FocusTextInControl(SearchFieldControlName);
+            _focusSearchField = false;
+        }
 
         if (GUILayout.Button(GUIContent.none, GUI.skin.FindStyle("ToolbarSearchCancelButton")))
         {
