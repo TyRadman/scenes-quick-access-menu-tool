@@ -182,8 +182,15 @@ public class ScenesQuickMenuEditorWindow : EditorWindow
         }
         else
         {
+            if (GUILayout.Button("Ping", GUILayout.Width(45), GUILayout.Height(25)))
+            {
+                EditorGUIUtility.PingObject(AssetDatabase.LoadAssetAtPath<SceneAsset>(scenePath));
+            }
+
+            GUIContent favoriteIcon = new GUIContent(EditorGUIUtility.IconContent("Favorite").image, "Add to Favorites");
+
             EditorGUI.BeginDisabledGroup(_favoriteScenes.Contains(scenePath));
-            if (GUILayout.Button("Add", GUILayout.Width(60), GUILayout.Height(25)))
+            if (GUILayout.Button(favoriteIcon, GUILayout.Width(25), GUILayout.Height(25)))
             {
                 _favoriteScenes.Add(scenePath);
                 EditorPrefs.SetString(GetEditorPrefKey(), string.Join("|", _favoriteScenes));
